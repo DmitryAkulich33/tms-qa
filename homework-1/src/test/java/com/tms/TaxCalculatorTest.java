@@ -27,7 +27,7 @@ public class TaxCalculatorTest {
         assertEquals(expected, taxCalculator.calculateTax(salary));
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class, expectedExceptionsMessageRegExp = TaxCalculator.ERROR_MESSAGE)
+    @Test(expectedExceptions = InvalidSalaryException.class, expectedExceptionsMessageRegExp = TaxCalculator.ERROR_MESSAGE)
     public void test_invalid_salary() {
         taxCalculator.calculateTax(-100.00);
     }

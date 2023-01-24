@@ -17,7 +17,7 @@ public class TaxCalculator {
 
     private void validateSalary(double salary) {
         if (salary < 0) {
-            throw new IllegalArgumentException(ERROR_MESSAGE);
+            throw new InvalidSalaryException(ERROR_MESSAGE);
         }
     }
 }
