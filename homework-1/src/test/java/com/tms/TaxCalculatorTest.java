@@ -1,21 +1,18 @@
 package com.tms;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static org.testng.Assert.assertEquals;
 
 public class TaxCalculatorTest {
     private TaxCalculator taxCalculator;
 
-    @BeforeClass
+    @BeforeTest
     public void setup() {
         taxCalculator = new TaxCalculator();
     }
 
-    @AfterClass
+    @AfterTest
     public void tearDown() {
         taxCalculator = null;
     }
