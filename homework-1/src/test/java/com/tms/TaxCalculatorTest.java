@@ -23,12 +23,12 @@ public class TaxCalculatorTest {
     }
 
     @Test(dataProvider = "salaries")
-    public void test_valid_salary(double salary, double expected) {
+    public void testValidSalary(double salary, double expected) {
         assertEquals(expected, taxCalculator.calculateTax(salary));
     }
 
     @Test(expectedExceptions = InvalidSalaryException.class, expectedExceptionsMessageRegExp = TaxCalculator.ERROR_MESSAGE)
-    public void test_invalid_salary() {
+    public void testInvalidSalary() {
         taxCalculator.calculateTax(-100.00);
     }
 }
