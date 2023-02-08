@@ -8,8 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class HoversTest extends BaseTest{
 
@@ -20,8 +19,6 @@ public class HoversTest extends BaseTest{
         assertEquals(figureElements.size(), 3, "Three figure elements should be displayed");
 
         WebElement figure1 = figureElements.get(0);
-        WebElement figure2 = figureElements.get(1);
-        WebElement figure3 = figureElements.get(2);
         Actions action = new Actions(webDriver);
         action.moveToElement(figure1).perform();
 
@@ -32,9 +29,9 @@ public class HoversTest extends BaseTest{
         List<WebElement> figcaptionList = webDriver.findElements(By.className("figcaption"));
         assertEquals(figcaptionList.size(), 3);
 
-        assertEquals(figcaptionList.get(0).getCssValue("display"), "block");
-        assertEquals(figcaptionList.get(1).getCssValue("display"), "none");
-        assertEquals(figcaptionList.get(2).getCssValue("display"), "none");
+        assertTrue(figcaptionList.get(0).isDisplayed());
+        assertFalse(figcaptionList.get(1).isDisplayed());
+        assertFalse(figcaptionList.get(2).isDisplayed());
 
         List<WebElement> userLinks = webDriver.findElements(By.xpath("//a[@href=\"/users/1\"]"));
         assertEquals(userLinks.size(), 1, "Only one link has url related to user1");
