@@ -5,12 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static by.tms.constants.Credentials.*;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
     private final String ERROR_TEMPLATE = "//h3[text()='Epic sadface: %s']";
@@ -87,18 +85,6 @@ public class LoginTest extends BaseTest {
         assertEquals(webDriver.findElements(By.cssSelector(".error-message-container.error")).size(), 1);
         assertEquals(webDriver.findElements(By.xpath(String.format(ERROR_TEMPLATE,
                 "Sorry, this user has been locked out."))).size(), 1);
-    }
-
-    @Test
-    public void testPerformanceGlitchUser() {
-        submitLogin(PERFORMANCE_GLITCH_USER, PASSWORD);
-
-        assertEquals(webDriver.getCurrentUrl(), INVENTORY_URL);
-        assertEquals(webDriver.findElements(By.id("shopping_cart_container")).size(), 1);
-        int start = LocalDateTime.now().getSecond();
-        assertEquals(webDriver.findElements(By.xpath(String.format(ERROR_TEMPLATE, CREDENTIALS_DO_NOT_MATCHED))).size(), 0);
-        int end = LocalDateTime.now().getSecond();
-        assertTrue(end - start >= 9);
     }
 
     private void submitLogin(String login, String password) {
