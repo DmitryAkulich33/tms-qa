@@ -31,8 +31,8 @@ public class LoginTest extends BaseTest {
     @DataProvider(name = "inValidCredentials")
     public static Object[][] inValidCredentials() {
         return new String[][]{
-                {"test", PASSWORD},
-                {"test", "test"}
+                {"login", PASSWORD},
+                {"login", "password"}
         };
     }
 
