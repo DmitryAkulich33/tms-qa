@@ -11,9 +11,10 @@ public class ProductsTest extends BaseTest {
     @Test
     public void checkProductsCount() {
         ProductsPage productsPage = new LoginPage(webDriver).open().loginAsStandardUser();
-        assertThat(productsPage.getProducts())
+        assertThat(productsPage.getAllProducts())
+                .as("Products page should exist on the page")
                 .isNotNull()
-                .hasSize(6)
-                .as("Products page should have 6 products");
+                .as("Products page should have 6 products")
+                .hasSize(6);
     }
 }

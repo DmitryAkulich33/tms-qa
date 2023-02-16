@@ -17,14 +17,13 @@ public class LoginPage extends BasePage {
 
     public LoginPage open() {
         webDriver.get("https://www.saucedemo.com/");
-        return new LoginPage(webDriver);
+        return this;
     }
 
     public void loginAs(String userName, String password) {
         webDriver.findElement(USER_NAME).sendKeys(userName);
         webDriver.findElement(PASSWORD).sendKeys(password);
         webDriver.findElement(LOGIN_BUTTON).click();
-
     }
 
     public ProductsPage loginAsStandardUser() {

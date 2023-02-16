@@ -13,6 +13,7 @@ public class ProductsPage extends BasePage {
 
     private final String PRODUCT_CARD_LOCATOR = "//div[text()='%s']/ancestor::div[@class='inventory_item']";
     private final String PRODUCT_PRICE_LOCATOR = PRODUCT_CARD_LOCATOR + "//div[@class='inventory_item_price']";
+    private final String ADD_TO_CART_BUTTON_LOCATOR = PRODUCT_CARD_LOCATOR + "//button[text()='Add to cart']";
 
     public ProductsPage(WebDriver webDriver) {
         super(webDriver);
@@ -22,7 +23,23 @@ public class ProductsPage extends BasePage {
         return webDriver.findElement(PRODUCTS_TITLE).isDisplayed();
     }
 
-    public List<WebElement> getProducts() {
+    public List<WebElement> getAllProducts() {
         return webDriver.findElements(ALL_PRODUCTS);
+    }
+
+    public ProductsPage addProductToCart(String productName) {
+        By fullLocator = By.xpath(String.format(ADD_TO_CART_BUTTON_LOCATOR, productName));
+        webDriver.findElement(fullLocator).click();
+        return this;
+    }
+
+    public CartPage openCartPage() {
+        webDriver.findElement(CART).click();
+        return new CartPage(webDriver);
+    }
+
+    public String getProductPrice(String productName) {
+        By fullLocator = By.xpath(String.format(PRODUCT_PRICE_LOCATOR, productName));
+        return webDriver.findElement(fullLocator).getText();
     }
 }
