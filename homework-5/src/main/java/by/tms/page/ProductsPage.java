@@ -3,6 +3,7 @@ package by.tms.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -17,9 +18,11 @@ public class ProductsPage extends BasePage {
 
     public ProductsPage(WebDriver webDriver) {
         super(webDriver);
+        isPageOpened();
     }
 
     public boolean isPageOpened() {
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCTS_TITLE));
         return webDriver.findElement(PRODUCTS_TITLE).isDisplayed();
     }
 
